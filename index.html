@@ -10,15 +10,35 @@
     <script>
       $(document).ready(function(){
 
-        // Given
+        // jQuery Body Selector
         var $body = $('body');
         $body.html('');
 
         // Title
         var $title = $('<h1><a href="#">Twitter</a></h1>')
         $title.appendTo($body);
-        $title.css({'color': '0084b4', 'background-color': '', 'font': 'Helvetica Neue', 'font-size': '40px', 'font-weight': 'bold', 'text-align': 'center'});
+        $title.css({
+          'color': '0084b4',
+          'background-color': 'c0deed',
+          'font': 'Helvetica Neue',
+          'font-size': '40px',
+          'font-weight': 'bold',
+          'text-align': 'center'
+        });
         $title.click();
+
+        // Feed Module
+        var $feed = $('<div></div>');
+        $feed.appendTo($body);
+        $feed.css({
+          'background-color': 'ffffff',
+          'font': 'Helvetica Neue',
+          'font-size': '14px'
+        });
+
+        // Refresh Feed Button
+        var $button = $('<button>Refresh Feed</button>');
+        $button.appendTo($body);
 
 
         var index = streams.home.length - 1;
