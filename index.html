@@ -9,62 +9,82 @@
   <body>
     <script>
       $(document).ready(function(){
-
         // jQuery Body Selector
         var $body = $('body');
         $body.html('');
+        $body.css({
+          'background-color': '#c0deed',
+          'font': 'Helvetica Neue',
+          'text-align': 'center'
+        });
 
-        // Title
-        var $title = $('<h1><a href="#">Twitter</a></h1>')
+        // Title Module
+        var $title = $('<h1><a href="#">Twitter</a></h1>');
         $title.appendTo($body);
         $title.css({
-          'color': '0084b4',
-          'background-color': 'c0deed',
+          'background-color': '#c0deed',
           'font': 'Helvetica Neue',
           'font-size': '40px',
           'font-weight': 'bold',
           'text-align': 'center'
         });
-        $title.click();
-        // $('title').on('click', 'title', function(){
-        //   location.reload();
-        // });
+        // Refresh page when title is clicked
+        $title.click(function(){
+          location.reload();
+        });
 
         // Refresh Feed Button
-        var $button = $('<button>Refresh Feed</button>');
+        var $button = $('<button>Update Feed</button>');
         $button.appendTo($body);
+        $button.css({
+          'background-color': '#00aced',
+          'font': 'Helvetica Neue',
+          'border': '0px',
+          'border-radius': '20px',
+          'color': '#ffffff',
+          'font-size': '14px',
+          'font-weight': 'bold',
+          'padding': '6px 18px'
+        });
+        // Refresh Feed when button is clicked
+        $button.click(updateFeed);
 
         // Feed Module
         var $feed = $('<div></div>');
         $feed.appendTo($body);
         $feed.css({
-          'background-color': 'ffffff',
+          'background-color': '#ffffff',
           'font': 'Helvetica Neue',
-          'font-size': '16px'
+          'font-size': '16px',
+          'text-align': 'center',
+          'margin': 'auto',
+          'height': '100vh',
+          'width': '50%',
+          'padding': '10px'
         });
 
         // Feed Generator
-        function refreshFeed(){
+        function updateFeed(){
           var index = streams.home.length - 1;
           while(index >= 0){
             var tweet = streams.home[index];
             var $tweet = $('<div></div>');
             $tweet.text('@' + tweet.user + ': ' + tweet.message);
             $tweet.appendTo($feed);
+            $tweet.css({
+              'color': 'black',
+              'font-size': "16px",
+              'text-align': 'left',
+              'margin': '16px'
+            });
             index -= 1;
           }
         }
-        refreshFeed();
-
-
+        updateFeed();
 
 
 
       });
-
-
-
-
     </script>
   </body>
 </html>
