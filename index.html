@@ -26,6 +26,13 @@
           'text-align': 'center'
         });
         $title.click();
+        // $('title').on('click', 'title', function(){
+        //   location.reload();
+        // });
+
+        // Refresh Feed Button
+        var $button = $('<button>Refresh Feed</button>');
+        $button.appendTo($body);
 
         // Feed Module
         var $feed = $('<div></div>');
@@ -33,23 +40,21 @@
         $feed.css({
           'background-color': 'ffffff',
           'font': 'Helvetica Neue',
-          'font-size': '14px'
+          'font-size': '16px'
         });
 
-        // Refresh Feed Button
-        var $button = $('<button>Refresh Feed</button>');
-        $button.appendTo($body);
-
-
-        var index = streams.home.length - 1;
-        while(index >= 0){
-          var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
-          index -= 1;
+        // Feed Generator
+        function refreshFeed(){
+          var index = streams.home.length - 1;
+          while(index >= 0){
+            var tweet = streams.home[index];
+            var $tweet = $('<div></div>');
+            $tweet.text('@' + tweet.user + ': ' + tweet.message);
+            $tweet.appendTo($feed);
+            index -= 1;
+          }
         }
-
+        refreshFeed();
 
 
 
