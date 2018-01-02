@@ -17,14 +17,14 @@
           'font-family': 'Helvetica Neue',
           'text-align': 'center'
         });
-        $($body).on('click', 'a', displayUserFeed);
+        $($body).on('click', 'a', updateFeed);
 
         // Title Module
-        var $title = $('<h1><a href="#">Twittler</a></h1>');
+        var $title = $('<h1><a href=#>Twittler</a></h1>');
         $title.appendTo($body);
         $('a').css({
           'background-color': '#c0deed',
-          'color': '#ffffff',
+          'color': '#33bdef',
           'font-size': '60px',
           'font-weight': 'bold',
           'text-align': 'center',
@@ -61,7 +61,7 @@
           while(index >= 0){
             var tweet = streams.home[index];
             var $tweet = $('<div></div>');
-            $tweet.html('<div class="username">' + '@' + tweet.user + '</div>' + '<div class="message">' + tweet.message + '</div> <div class="datetime">' + tweet.created_at.toLocaleDateString() + ' ' + tweet.created_at.toLocaleTimeString()+ '</div>');
+            $tweet.html('<div class="username" id=>' + '@' + tweet.user + '</div>' + '<div class="message">' + tweet.message + '</div> <div class="datetime">' + tweet.created_at.toLocaleDateString() + ' ' + tweet.created_at.toLocaleTimeString()+ '</div>');
             $tweet.appendTo($feed);
             $tweet.css({
               'background-color': '#ffffff',
@@ -89,61 +89,9 @@
               'padding-top': '12px',
               'margin-top': '20px',
               'margin-left': '20px'
-
             });
             // Date and Time Styling
             $('.datetime').css({
-              'font-size': "12px",
-              'color': '#666666',
-              'padding-top': '12px',
-              'margin-top': '20px',
-              'margin-left': '20px'
-            });
-            index -= 1;
-          }
-        }
-
-        // View Individual user's Tweets
-        function displayUserFeed() {
-          var user = $(this).attr('#username');
-          var index = streams.users[user].length - 1;
-          // Clears the existing Twittler Feed
-          $feed.empty();
-          while(index >= 0){
-            var tweet = streams.users[user][index];
-            var $tweet = $('<div></div>');
-            $tweet.html('<a href=# id="username"'+user+'>@'+user+'</a> (' + tweet.created_at.toLocaleDateString() + ' at ' + tweet.created_at.toLocaleTimeString() + '): ' + tweet.message);
-            $tweet.appendTo($feed);
-            $tweet.css({
-              'background-color': '#ffffff',
-              'border-radius': '20px',
-              'color': 'black',
-              'font-size': "16px",
-              'text-align': 'left',
-              'height': '150px',
-              'width': '450px',
-              'margin': 'auto',
-              'margin-bottom': '20px',
-              'positon': 'center',
-            });
-            // Username Styling
-            $('#username').css({
-              'font-size': '18px',
-              'font-weight': "bold",
-              'padding-top': '12px',
-              'margin-top': '10px',
-              'margin-left': '20px'
-            });
-            // Tweet Styling
-            $('#message').css({
-              'font-size': "16px",
-              'padding-top': '12px',
-              'margin-top': '20px',
-              'margin-left': '20px'
-
-            });
-            // Date and Time Styling
-            $('#datetime').css({
               'font-size': "12px",
               'color': '#666666',
               'padding-top': '12px',
