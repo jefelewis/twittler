@@ -60,8 +60,8 @@
           $feed.empty();
           while(index >= 0){
             var tweet = streams.home[index];
-            var $tweet = $('<div></div>');
-            $tweet.html('<div class="username" id=>' + '@' + tweet.user + '</div>' + '<div class="message">' + tweet.message + '</div> <div class="datetime">' + tweet.created_at.toLocaleDateString() + ' ' + tweet.created_at.toLocaleTimeString()+ '</div>');
+            var $tweet = $('<div class="tweet"></div>');
+            $tweet.html('<div class="username">' + '@' + tweet.user + '</div>' + '<div class="message">' + tweet.message + '</div> <div class="datetime">' + tweet.created_at.toLocaleDateString() + ' ' + tweet.created_at.toLocaleTimeString()+ '</div>');
             $tweet.appendTo($feed);
             $tweet.css({
               'background-color': '#ffffff',
@@ -70,7 +70,7 @@
               'font-size': "16px",
               'text-align': 'left',
               'height': '150px',
-              'width': '460px',
+              'width': '480px',
               'margin': 'auto',
               'margin-bottom': '20px',
               'positon': 'center',
@@ -101,6 +101,14 @@
             index -= 1;
           }
         }
+
+        // Show Indivual Tweets
+        $(tweet.user).click(function(){
+          if(!user.tweet){
+            $('.tweet').hide();
+          }
+        });
+
       });
     </script>
   </body>
